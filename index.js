@@ -1,8 +1,16 @@
 const fetch = require("node-fetch");
 
+/**
+ *
+ * @param event bypass the event object from the handler method
+ * @param context bypass the event object from the handler method
+ * @param data custom data which can used from cloud formation template with GetAtt
+ * @param physicalResourceId created resource id. Default: logStreamName given from the context
+ * @returns {Promise<*>}
+ */
 async function sendSuccess(event, context, {data = {}, physicalResourceId = context.logStreamName} = {}) {
 
-    if(!event || !context){
+    if (!event || !context) {
         throw `missing mandatory parameter`
     }
 
@@ -34,9 +42,15 @@ async function sendSuccess(event, context, {data = {}, physicalResourceId = cont
         .catch(error => console.warn(error));
 }
 
-async function sendFail(event, context, customReason = `See the details in CloudWatch Log Stream: ${context.logStreamName}`){
+/**
+ * @param event bypass the event object from the handler method
+ * @param context bypass the event object from the handler method
+ * @param customReason Give a reason why cloudformation failed
+ * @returns {Promise<void>}
+ */
+async function sendFail(event, context, customReason = `See the details in CloudWatch Log Stream: ${context.logStreamName}`) {
 
-    if(!event || !context){
+    if (!event || !context) {
         throw `missing mandatory parameter`
     }
 

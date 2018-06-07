@@ -1,0 +1,11 @@
+{
+  "callbackWaitsForEmptyEventLoop": true,
+  "logGroupName": "/aws/lambda/s2t-base-s3EventNotifier-NVGOLL6H0BOT",
+  "logStreamName": "2018/06/05/[$LATEST]dff247ec8b6f4fa090c2dd59d909360d",
+  "functionName": "s2t-base-s3EventNotifier-NVGOLL6H0BOT",
+  "memoryLimitInMB": "128",
+  "functionVersion": "$LATEST",
+  "invokeid": "5b515e71-691c-11e8-8b96-5be2c77ee26d",
+  "awsRequestId": "5b515e71-691c-11e8-8b96-5be2c77ee26d",
+  "invokedFunctionArn": "arn:aws:lambda:eu-west-1:099687127161:function:s2t-base-s3EventNotifier-NVGOLL6H0BOT"
+}

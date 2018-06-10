@@ -56,7 +56,7 @@ async function sendFail(event, context, customReason = `See the details in Cloud
 
     let payload = JSON.stringify({
         Status: 'FAILED',
-        Reason: customReason,
+        Reason: customReason.toString(),
         PhysicalResourceId: context.logStreamName,
         StackId: event.StackId,
         RequestId: event.RequestId,

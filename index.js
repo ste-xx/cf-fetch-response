@@ -30,7 +30,7 @@ async function sendSuccess(event, context, {data = {}, physicalResourceId = cont
         Data: data
     });
 
-    return await fetch(event.ResponseURL, {
+    return fetch(event.ResponseURL, {
         method: 'PUT',
         headers: {
             'content-type': '',
@@ -64,7 +64,7 @@ async function sendFail(event, context, customReason = `See the details in Cloud
         NoEcho: false,
     });
 
-    return await fetch(event.ResponseURL, {
+    return fetch(event.ResponseURL, {
         method: 'PUT',
         headers: {
             'content-type': '',

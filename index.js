@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 
+let cfResponseForwarded=false;
+
 /**
  *
  * @param event bypass the event object from the handler method
@@ -39,6 +41,7 @@ async function sendSuccess(event, context, {data = {}, physicalResourceId = cont
         body: payload
     }).then(response => response.text())
         .then(data => console.log(data))
+        .then(() => cfResponseForwarded=true)
         .catch(error => console.warn(error));
 }
 
@@ -73,10 +76,12 @@ async function sendFail(event, context, customReason = `See the details in Cloud
         body: payload
     }).then(response => response.text())
         .then(data => console.log(data))
+        .then(() => cfResponseForwarded=true)
         .catch(error => console.warn(error));
 }
 
 module.exports = {
     sendSuccess: sendSuccess,
-    sendFail: sendFail
+    sendFail: sendFail,
+    wasCfResponseForwarded:()=>cfResponseForwarded
 };

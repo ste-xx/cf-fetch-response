@@ -1,6 +1,6 @@
 {
   "name": "cf-fetch-response",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Library to send cloudformation custom resource responses with node-fetch",
   "main": "index.js",
   "directories": {

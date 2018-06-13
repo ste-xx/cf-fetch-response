@@ -47,6 +47,19 @@ describe('cf-fetch-response', () => {
         expect(paramBody.Data).to.be.empty
     });
 
+    it('wasCfResponseForwarded returns true after success was called', async () => {
+
+        const nodeFetchFake = fake.resolves({text: () => 'response request succeeded'});
+
+        let underTest = proxyquire('../index.js', {
+            'node-fetch': nodeFetchFake
+        });
+
+        expect(underTest.wasCfResponseForwarded()).to.be.false;
+        await underTest.sendSuccess(cfEvent, cfContext);
+        expect(underTest.wasCfResponseForwarded()).to.be.true;
+    });
+
     it('send success with custom data', async () => {
 
         const nodeFetchFake = fake.resolves({text: () => 'response request succeeded'});
@@ -224,6 +237,18 @@ describe('cf-fetch-response', () => {
             RequestId: '77afbba7-4cde-4e70-98c1-63abb75fc370',
             LogicalResourceId: 's2tTrackAllS3'
         });
-        
+    });
+
+    it('wasCfResponseForwarded returns true after fail was called', async () => {
+
+        const nodeFetchFake = fake.resolves({text: () => 'response request succeeded'});
+
+        let underTest = proxyquire('../index.js', {
+            'node-fetch': nodeFetchFake
+        });
+
+        expect(underTest.wasCfResponseForwarded()).to.be.false;
+        await underTest.sendFail(cfEvent, cfContext);
+        expect(underTest.wasCfResponseForwarded()).to.be.true;
     });
 });
